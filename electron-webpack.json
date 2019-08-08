@@ -1,10 +1,13 @@
 {
+  "title": "ccforeverd/electron-project",
   "commonSourceDirectory": "src/common",
   "staticSourceDirectory": "src/static",
   "main": {
-    "sourceDirectory": "src/client"
+    "sourceDirectory": "src/client",
+    "webpackConfig": "build/webpack.main.js"
   },
   "renderer": {
-    "sourceDirectory": "src/window"
+    "sourceDirectory": "src/window",
+    "webpackConfig": "build/webpack.renderer.js"
   }
 }

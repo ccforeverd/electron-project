@@ -1,7 +1,7 @@
 import fs from 'fs'
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-import { Card, Result, Icon, Button } from 'antd'
+import { Card, Result, Icon, Button, message } from 'antd'
 
 import ViewLogin from '@views/Login'
 import ViewUpload from '@views/Upload'
@@ -12,7 +12,7 @@ import ViewUpload from '@views/Upload'
 class ViewEntrance extends Component {
 
   state = {
-    tab: 2
+    tab: 0
   }
 
   tab = (tab) => {
@@ -28,6 +28,7 @@ class ViewEntrance extends Component {
     save && this.props.data.save()
 
     this.props.view.gotoMain()
+    message.success('上传成功')
   }
 
   // 首页登录, 进入选择页面
@@ -71,7 +72,7 @@ class ViewEntrance extends Component {
             <Card title='创建新文件' style={{ width: 300, marginRight: 20 }}>
               <Result
                 icon={<Icon type='edit' theme='twoTone' />}
-                extra={<Button type='primary' onClick={this.onClick}>创建</Button>}
+                extra={<Button type='primary' onClick={this.onClick}>开始</Button>}
               />
             </Card>
             <Card title='上传文件进行编辑' style={{ width: 300 }}>

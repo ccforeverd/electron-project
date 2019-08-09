@@ -1,4 +1,5 @@
 import fs from 'fs'
+import FileSaver from 'file-saver'
 import { observable, action } from 'mobx'
 
 import StoreSystem from '@store/system'
@@ -16,6 +17,19 @@ class StoreData {
 
   @action setEditable (bool = false) {
     this.editable = bool
+  }
+
+  @action appendItem (list, item) {
+    return list.push(item)
+  }
+
+  @action updateItem (list, item, newItem) {
+    Object.assign(item, newItem)
+    return list.replace([item])
+  }
+
+  @action deleteItem (list, item) {
+    return list.remove(item)
   }
 
   // 创建跟数据
@@ -36,15 +50,16 @@ class StoreData {
     return {
       icon: 'book', // paper-clip start
       title: '未命名',
-      sub: [],
-      content: ''
+      sub: [], // 子项目
+      content: [] // 文案
     }
   }
 
   // 创建一条项目(第二列)
   createSubItem () {
     return {
-      content: ''
+      title: '未命名子项目',
+      content: [] // 文案
     }
   }
 
@@ -74,6 +89,13 @@ class StoreData {
     }
 
     return JSON.parse(jsonString)
+  }
+
+  // 下载到本地
+  download (fileName = '配置文件.json') {
+    const jsonString = JSON.stringify(this.json, null, '  ')
+    const file = new File([jsonString], fileName, { type: 'text/plain;charset=utf-8' })
+    FileSaver.saveAs(file)
   }
 
   // TODO 将图片转为base64

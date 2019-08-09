@@ -1,5 +1,15 @@
 {
   "compilerOptions": {
+    "paths": {
+      "@/*": ["src/*"],
+      "@client/*": ["src/client/*"],
+      "@common/*": ["src/common/*"],
+      "@config/*": ["src/common/config/*"],
+      "@window/*": ["src/window/*"],
+      "@components/*": ["src/window/components/*"],
+      "@store/*": ["src/window/store/*"],
+      "@views/*": ["src/window/views/*"]
+    },
     "experimentalDecorators": true
   }
 }

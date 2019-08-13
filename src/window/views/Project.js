@@ -17,7 +17,8 @@ class ViewProject extends Component {
         <h3>React version: {this.props.system.react.version}</h3>
 
         <h2>User information</h2>
-        <h3>Username: {this.props.user.username}</h3>
+        <h3>UserName: {this.props.user.username}</h3>
+        <h3>UserRole: {this.props.user.role}</h3>
       </section>
     )
   }

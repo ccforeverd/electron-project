@@ -1,19 +1,18 @@
 import fs from 'fs'
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-import { Layout, Menu, Breadcrumb, Icon, Empty, Button, Modal, message } from 'antd'
+import { Layout, Breadcrumb, Button, Modal, message } from 'antd'
 
-import MenuTitle from '@components/MenuTitle'
+import MainEmpty from '@components/MainEmpty'
+import MainMenu from '@components/MainMenu'
 import ViewUpload from '@views/Upload'
 import ViewProject from '@views/Project'
 
-const { SubMenu } = Menu
 const { Header, Content, Sider } = Layout
 
 @inject('data')
 @inject('user')
 @inject('system')
-@inject('view')
 @observer
 class ViewMain extends Component {
 
@@ -51,76 +50,14 @@ class ViewMain extends Component {
   }
 
   render () {
-    const { data, view } = this.props
+    const { data } = this.props
 
     return (
       this.isEmpty
-      ? <Empty
-        image={Empty.PRESENTED_IMAGE_SIMPLE}
-        style={{ paddingTop: 160, marginTop: 0 }}
-        description={this.isEditable ? '没有数据, 请创建第一条数据' : '没有数据, 请上传数据文件'}
-      >
-        {this.isEditable
-          ? <Button type='primary' onClick={() => data.setData(data.createRoot())}>创建</Button>
-          : <Button type='primary' onClick={() => view.gotoEntrance()}>去上传</Button>
-        }
-      </Empty>
+      ? <MainEmpty isEditable={this.isEditable} />
       : <Layout style={{ minHeight: '100vh' }}>
         <Sider style={{ background: '#fff' }}>
-          <Menu mode='inline' style={{ borderRight: 0 }}>
-            {
-              data.json.content.map((item, index) => {
-                const key = `item-${index}`
-                const subs = item.sub.map((subItem, subIndex) => (
-                  <Menu.Item key={`subitem-${index}-${subIndex}`}>
-                    <MenuTitle
-                      item={subItem}
-                      isEditable={this.isEditable}
-                      onDelete={() => data.deleteItem(item.sub, subItem)}
-                      onEdit={newItem => data.updateItem(item.sub, subItem, newItem)}
-                    />
-                  </Menu.Item>
-                ))
-
-                if (this.isEditable) {
-                  return (
-                    <SubMenu key={key} title={
-                      <MenuTitle
-                        item={item}
-                        isEditable={true}
-                        onDelete={() => data.deleteItem(data.json.content, item)}
-                        onEdit={newItem => data.updateItem(data.json.content, item, newItem)}
-                      />
-                    }>
-                      {subs}
-                      <Menu.Item onClick={() => data.appendItem(item.sub, data.createSubItem())}>
-                        <Icon type='plus-circle' />
-                        <span>添加新的子项目</span>
-                      </Menu.Item>
-                    </SubMenu>
-                  )
-                } else {
-                  if (item.sub.length > 0) {
-                    return (
-                      <SubMenu key={key} title={<MenuTitle item={item} />}>{subs}</SubMenu>
-                    )
-                  } else {
-                    return (
-                      <Menu.Item key={key}>
-                        <MenuTitle item={item} />
-                      </Menu.Item>
-                    )
-                  }
-                }
-              })
-            }
-            {this.isEditable &&
-              <Menu.Item onClick={() => data.appendItem(data.json.content, data.createItem())}>
-                <Icon type='plus-circle' />
-                <span>点击添加</span>
-              </Menu.Item>
-            }
-          </Menu>
+          <MainMenu isEditable={this.isEditable} />
         </Sider>
         <Layout>
           {this.isEditable &&

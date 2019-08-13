@@ -13,6 +13,8 @@ class App extends Component {
   componentDidMount () {
     const data = this.props.data.load()
 
+    console.log('data', data)
+
     if (data) {
       this.props.data.setData(data)
       this.props.view.gotoMain()

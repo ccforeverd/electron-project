@@ -11,6 +11,7 @@ const { SubMenu } = Menu
 const { Header, Content, Sider } = Layout
 
 @inject('data')
+@inject('user')
 @inject('system')
 @inject('view')
 @observer
@@ -24,7 +25,7 @@ class ViewMain extends Component {
 
   // 是否是编辑状态
   get isEditable () {
-    return this.props.data.editable
+    return this.props.user.role === this.props.user.ROLE_ADMIN
   }
 
   showUpload = () => {

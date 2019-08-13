@@ -34,13 +34,11 @@ class ViewEntrance extends Component {
   // 首页登录, 进入选择页面
   onLogin = () => {
     this.tab(2)
-    this.props.data.setEditable(true)
   }
 
   // 选择页面创建新文件, 清空数据并配置为可编辑状态
-  onClick = () => {
+  onStart = () => {
     this.props.data.setData()
-    this.props.data.setEditable(true)
     this.props.view.gotoMain()
   }
 
@@ -72,7 +70,7 @@ class ViewEntrance extends Component {
             <Card title='创建新文件' style={{ width: 300, marginRight: 20 }}>
               <Result
                 icon={<Icon type='edit' theme='twoTone' />}
-                extra={<Button type='primary' onClick={this.onClick}>开始</Button>}
+                extra={<Button type='primary' onClick={this.onStart}>开始</Button>}
               />
             </Card>
             <Card title='上传文件进行编辑' style={{ width: 300 }}>

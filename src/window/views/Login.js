@@ -1,16 +1,21 @@
 import React, { Component } from 'react'
+import { inject, observer } from 'mobx-react'
 import { Form, Input, Icon, Button, message } from 'antd'
 
 import admin from '@config/admin'
 
+@inject('user')
+@observer
 class ViewLogin extends Component {
 
   submit = event => {
     event.preventDefault()
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        if (values.username === admin.username && values.password === admin.password) {
+        const { username, password } = values
+        if (username === admin.username && password === admin.password) {
           message.success('登录成功')
+          this.props.user.set(username, this.props.user.ROLE_ADMIN)
           this.props.onLogin()
         } else {
           message.error('用户名/密码不正确')

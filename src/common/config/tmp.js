@@ -7,5 +7,6 @@ const dir = path.join(os.homedir(), '.electron-project-rc')
 
 export default {
   dir,
-  json: path.join(dir, 'data.json')
+  data: path.join(dir, 'data.json'), // 展示数据
+  table: path.join(dir, 'table.json') // 流程数据
 }

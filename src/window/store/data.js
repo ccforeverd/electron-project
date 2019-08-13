@@ -9,14 +9,9 @@ const system = new StoreSystem()
 
 class StoreData {
   @observable json = {}
-  @observable editable = process.env.NODE_ENV === 'development' // 是否可编辑
 
   @action setData (json = {}) {
     this.json = json
-  }
-
-  @action setEditable (bool = false) {
-    this.editable = bool
   }
 
   @action appendItem (list, item) {
@@ -70,19 +65,19 @@ class StoreData {
     if (!fs.existsSync(tmp.dir)) {
       fs.mkdirSync(tmp.dir)
     }
-    if (fs.existsSync(tmp.json)) {
-      fs.unlinkSync(tmp.json)
+    if (fs.existsSync(tmp.data)) {
+      fs.unlinkSync(tmp.data)
     }
-    fs.writeFileSync(tmp.json, jsonString, 'utf8')
+    fs.writeFileSync(tmp.data, jsonString, 'utf8')
   }
 
   // 从本地读取
   load () {
-    if (!fs.existsSync(tmp.dir) || !fs.existsSync(tmp.json)) {
+    if (!fs.existsSync(tmp.dir) || !fs.existsSync(tmp.data)) {
       return null
     }
     
-    const jsonString = fs.readFileSync(tmp.json, 'utf8').trim()
+    const jsonString = fs.readFileSync(tmp.data, 'utf8').trim()
 
     if (jsonString === '' || jsonString === '{}') {
       return null

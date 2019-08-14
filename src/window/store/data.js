@@ -8,10 +8,15 @@ import tmp from '@config/tmp'
 const system = new StoreSystem()
 
 class StoreData {
-  @observable json = {}
+  @observable json = {} // 全部数据
+  @observable current = [] // 当前展示数据
 
   @action setData (json = {}) {
     this.json = json
+  }
+
+  @action setCurrent (...items) {
+    this.current = [...items].filter(item => item)
   }
 
   @action appendItem (list, item) {

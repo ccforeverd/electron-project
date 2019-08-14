@@ -11,20 +11,22 @@ class MainMenu extends Component {
 
   onSelect = ({ key }) => {
     const { json } = this.props.data
-    const [ type, index, subIndex ] = key.split('-')
+    const [ /* type */, index, subIndex ] = key.split('-')
     const item = json.content[index]
     const subItem = item.sub[subIndex]
 
-    console.log(type)
-    console.log(item)
-    console.log(subItem)
+    this.props.data.setCurrent(item, subItem)
   }
 
   render () {
     const { isEditable, data } = this.props
 
     return (
-      <Menu mode='inline' style={{ borderRight: 0 }} onSelect={this.onSelect}>
+      <Menu
+        mode='inline'
+        style={{ borderRight: 0 }}
+        onSelect={this.onSelect}
+      >
         {
           data.json.content.map((item, index) => {
             const key = `item-${index}`

@@ -1,10 +1,12 @@
 import fs from 'fs'
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-import { Layout, Breadcrumb, Button, Modal, message } from 'antd'
+import { Layout, Button, Modal, message } from 'antd'
 
 import MainEmpty from '@components/MainEmpty'
 import MainMenu from '@components/MainMenu'
+import MainPath from '@components/MainPath'
+
 import ViewUpload from '@views/Upload'
 import ViewProject from '@views/Project'
 
@@ -67,10 +69,7 @@ class ViewMain extends Component {
             </Header>
           }
           <Content style={{ margin: '0 16px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>item1</Breadcrumb.Item>
-              <Breadcrumb.Item>item2</Breadcrumb.Item>
-            </Breadcrumb>
+            <MainPath />
             <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
               {/* main content */}
               <ViewProject />

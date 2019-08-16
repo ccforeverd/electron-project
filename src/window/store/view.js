@@ -5,6 +5,7 @@ const noop = () => {}
 class StoreView {
   @observable page = ''
   @observable dialog = ''
+  @observable content = ''
 
   callbacks = {}
 
@@ -28,6 +29,18 @@ class StoreView {
 
   @action closeDialog () {
     this.dialog = ''
+  }
+
+  @action contentShow () {
+    this.content = 'content'
+  }
+
+  @action contentProject () {
+    this.content = 'project'
+  }
+
+  @action clearContent () {
+    this.content = ''
   }
 }
 

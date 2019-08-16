@@ -11,6 +11,11 @@ class StoreUser {
     this.name = name
     this.role = role
   }
+
+  @action logout () {
+    this.name = ''
+    this.role = this.ROLE_DEFAULT
+  }
 }
 
 export default StoreUser

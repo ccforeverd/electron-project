@@ -9,7 +9,7 @@ const { Header } = Layout
 class MainHeader extends Component {
 
   // 重新上传
-  reUpload () {
+  reUpload = () => {
     this.props.view.dialogUpload(data => {
       this.props.data.setData(data)
       this.props.view.closeDialog()
@@ -17,7 +17,7 @@ class MainHeader extends Component {
   }
 
   // 保存
-  save () {
+  save = () => {
     this.props.data.download()
   }
 

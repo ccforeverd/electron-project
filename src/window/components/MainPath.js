@@ -11,7 +11,7 @@ class MainPath extends Component {
 
   render () {
     return (this.list.length > 0 &&
-      <Breadcrumb style={{ margin: '16px 0' }}>
+      <Breadcrumb style={{ marginBottom: 16 }}>
         {
           this.list.map(item => (
             <Breadcrumb.Item key={item}>{item}</Breadcrumb.Item>

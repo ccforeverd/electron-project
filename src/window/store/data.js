@@ -50,6 +50,7 @@ class StoreData {
     return {
       icon: 'book', // paper-clip start
       title: '未命名',
+      type: 'item',
       sub: [], // 子项目
       content: [] // 文案
     }
@@ -58,6 +59,7 @@ class StoreData {
   // 创建一条项目(第二列)
   createSubItem () {
     return {
+      type: 'sub-item',
       title: '未命名子项目',
       content: [] // 文案
     }

@@ -6,6 +6,7 @@ import MenuTitle from './MenuTitle'
 const { SubMenu } = Menu
 
 @inject('data')
+@inject('view')
 @observer
 class MainMenu extends Component {
 
@@ -16,6 +17,7 @@ class MainMenu extends Component {
     const subItem = item.sub[subIndex]
 
     this.props.data.setCurrent(item, subItem)
+    this.props.view.contentShow()
   }
 
   render () {

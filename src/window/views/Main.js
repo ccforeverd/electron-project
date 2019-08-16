@@ -8,7 +8,7 @@ import MainMenu from '@components/MainMenu'
 import MainPath from '@components/MainPath'
 import MainSettings from '@components/MainSettings'
 
-import ViewProject from '@views/Project'
+import ViewContent from '@views/Content'
 import ViewDialogs from '@views/Dialogs'
 
 const { Content, Sider } = Layout
@@ -43,11 +43,10 @@ class ViewMain extends Component {
               {this.isEditable &&
                 <MainHeader />
               }
-              <Content style={{ margin: '0 16px' }}>
+              <Content style={{ margin: '16px' }}>
                 <MainPath />
                 <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-                  {/* main content */}
-                  <ViewProject />
+                  <ViewContent isEditable={this.isEditable} />
                 </div>
               </Content>
             </Layout>

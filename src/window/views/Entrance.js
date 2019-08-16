@@ -1,7 +1,6 @@
-import fs from 'fs'
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-import { Card, Result, Icon, Button, message } from 'antd'
+import { Card, Result, Icon, Button } from 'antd'
 
 import ViewLogin from '@views/Login'
 import ViewUpload from '@views/Upload'
@@ -20,15 +19,11 @@ class ViewEntrance extends Component {
   }
 
   // 上传 (是否保存文件, 编辑时不保存文件, 只有上传时保存)
-  onUpload = (file, save) => {
-    const jsonString = fs.readFileSync(file.path, 'utf8')
-    const json = JSON.parse(jsonString)
-
-    this.props.data.setData(json)
+  onUpload = (data, save) => {
+    this.props.data.setData(data)
     save && this.props.data.save()
 
     this.props.view.gotoMain()
-    message.success('上传成功')
   }
 
   // 首页登录, 进入选择页面

@@ -1,12 +1,23 @@
+import fs from 'fs'
 import React, { Component } from 'react'
-import { Upload, Icon } from 'antd'
+import { Upload, Icon, message } from 'antd'
 
 const { Dragger } = Upload
 
 class ViewUpload extends Component {
 
   onBeforeUpload = file => {
-    this.props.onUpload(file)
+    const jsonString = fs.readFileSync(file.path, 'utf8')
+
+    try {
+      const data = JSON.parse(jsonString)
+
+      message.success('上传成功')
+      this.props.onUpload(data)
+    } catch (e) {
+      message.error('文件格式错误')
+    }
+
     return false
   }
 

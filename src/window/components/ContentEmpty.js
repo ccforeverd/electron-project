@@ -3,19 +3,26 @@ import { inject, observer } from 'mobx-react'
 import { Empty, Button  } from 'antd'
 
 @inject('data')
+@inject('view')
 @observer
 class ContentEmpty extends Component {
+  append = () => {
+    this.props.view.dialogAppend()
+  }
+
   render () {
-    const { isEditable, data } = this.props
+    const { isEditable } = this.props
 
     return (
       <Empty
         image={Empty.PRESENTED_IMAGE_SIMPLE}
-        style={{ paddingTop: 160, marginTop: 0 }}
-        description={isEditable ? '没有数据, 请创建第一条数据' : '没有数据, 请上传数据文件'}
+        style={{ paddingTop: 100, marginTop: 0 }}
+        description={isEditable ? '没有数据' : '没有数据'}
       >
-        {this.isEditable
-          ? <Button type='primary' onClick={() => data.setData(data.createRoot())}>创建</Button>
+        {isEditable
+          ? <Button type='primary' onClick={this.append}>
+            添加数据
+          </Button>
           : ''
         }
       </Empty>

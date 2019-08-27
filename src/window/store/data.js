@@ -1,3 +1,4 @@
+
 import fs from 'fs'
 import FileSaver from 'file-saver'
 import { observable, action } from 'mobx'
@@ -83,7 +84,7 @@ class StoreData {
     if (!fs.existsSync(tmp.dir) || !fs.existsSync(tmp.data)) {
       return null
     }
-    
+
     const jsonString = fs.readFileSync(tmp.data, 'utf8').trim()
 
     if (jsonString === '' || jsonString === '{}') {

@@ -7,9 +7,8 @@ const { Header } = Layout
 @inject('data')
 @inject('view')
 class MainHeader extends Component {
-
   // 重新上传
-  reUpload = () => {
+  handleReUpload = () => {
     this.props.view.dialogUpload(data => {
       this.props.data.setData(data)
       this.props.view.closeDialog()
@@ -17,7 +16,7 @@ class MainHeader extends Component {
   }
 
   // 保存
-  save = () => {
+  handleSave = () => {
     this.props.data.download()
   }
 
@@ -27,11 +26,11 @@ class MainHeader extends Component {
         background: '#f0f2f5',
         textAlign: 'right',
         borderBottom: '1px solid #fff'
-      }}>
-        <Button type='link' onClick={this.reUpload}>重新上传</Button>
-        <Button type='primary' onClick={this.save}>保存</Button>
+      }}
+      >
+        <Button type='link' onClick={this.handleReUpload}>重新上传</Button>
+        <Button type='primary' onClick={this.handleSave}>保存</Button>
       </Header>
-
     )
   }
 }

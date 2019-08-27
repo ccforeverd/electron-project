@@ -10,10 +10,9 @@ const { SubMenu } = Menu
 @inject('view')
 @observer
 class MainMenu extends Component {
-
-  onSelect = ({ key }) => {
+  handleSelect = ({ key }) => {
     const { json } = this.props.data
-    const [ /* type */, index, subIndex ] = key.split('-')
+    const [, index, subIndex] = key.split('-')
     const item = json.content[index]
     const subItem = item.sub[subIndex]
 
@@ -28,7 +27,7 @@ class MainMenu extends Component {
       <Menu
         mode='inline'
         style={{ borderRight: 0 }}
-        onSelect={this.onSelect}
+        onSelect={this.handleSelect}
       >
         {
           data.json.content.map((item, index) => {
@@ -46,14 +45,16 @@ class MainMenu extends Component {
 
             if (isEditable) {
               return (
-                <SubMenu key={key} title={
-                  <MenuTitle
-                    item={item}
-                    isEditable={true}
-                    onDelete={() => data.deleteItem(data.json.content, item)}
-                    onEdit={newItem => data.updateItem(data.json.content, item, newItem)}
-                  />
-                }>
+                <SubMenu
+                  key={key} title={
+                    <MenuTitle
+                      item={item}
+                      isEditable
+                      onDelete={() => data.deleteItem(data.json.content, item)}
+                      onEdit={newItem => data.updateItem(data.json.content, item, newItem)}
+                    />
+                  }
+                >
                   {subs}
                   <Menu.Item onClick={() => data.appendItem(item.sub, data.createSubItem())}>
                     <Icon type='plus-circle' />
@@ -80,8 +81,7 @@ class MainMenu extends Component {
           <Menu.Item onClick={() => data.appendItem(data.json.content, data.createItem())}>
             <Icon type='plus-circle' />
             <span>点击添加</span>
-          </Menu.Item>
-        }
+          </Menu.Item>}
       </Menu>
     )
   }

@@ -5,12 +5,15 @@ class StoreSystem {
   node = {
     version: process.versions.node
   }
+
   electron = {
     version: process.versions.electron
   }
+
   react = {
     version: ReactVersion
   }
+
   project = {
     version: ProjectVersion
   }

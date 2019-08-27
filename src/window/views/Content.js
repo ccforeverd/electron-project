@@ -9,7 +9,6 @@ import ViewProject from '@views/Project'
 @inject('view')
 @observer
 class ViewContent extends Component {
-
   get item () {
     const { current } = this.props.data
     return current[current.length - 1] || null
@@ -26,8 +25,8 @@ class ViewContent extends Component {
     return {
       content: (
         this.isEmpty
-        ? <ContentEmpty isEditable={isEditable} />
-        : <content>222</content>
+          ? <ContentEmpty isEditable={isEditable} />
+          : <content>222</content>
       ),
       project: <ViewProject />
     }[this.props.view.content] || ''

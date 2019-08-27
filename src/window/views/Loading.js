@@ -10,7 +10,8 @@ class ViewLoading extends Component {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center'
-      }}>
+      }}
+      >
         <Spin size='large' />
       </section>
     )

@@ -11,5 +11,5 @@ module.exports = {
   '@window': resolve('src/window'),
   '@components': resolve('src/window/components'),
   '@store': resolve('src/window/store'),
-  '@views': resolve('src/window/views'),
+  '@views': resolve('src/window/views')
 }

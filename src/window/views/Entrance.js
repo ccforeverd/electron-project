@@ -9,7 +9,6 @@ import ViewUpload from '@views/Upload'
 @inject('view')
 @observer
 class ViewEntrance extends Component {
-
   state = {
     tab: 0
   }
@@ -27,12 +26,12 @@ class ViewEntrance extends Component {
   }
 
   // 首页登录, 进入选择页面
-  onLogin = () => {
+  handleLogin = () => {
     this.tab(2)
   }
 
   // 选择页面创建新文件, 清空数据并配置为可编辑状态
-  onStart = () => {
+  handleStart = () => {
     this.props.data.setData()
     this.props.view.gotoMain()
   }
@@ -47,8 +46,7 @@ class ViewEntrance extends Component {
             extra={<a href='javascript:;' onClick={() => this.tab(1)}>登录编辑</a>}
           >
             <ViewUpload onUpload={file => this.onUpload(file, true)} />
-          </Card>
-        }
+          </Card>}
 
         {this.state.tab === 1 &&
           <Card
@@ -56,23 +54,21 @@ class ViewEntrance extends Component {
             style={{ width: 400, margin: '0 auto' }}
             extra={<a href='javascript:;' onClick={() => this.tab(0)}>返回</a>}
           >
-            <ViewLogin style={{ width: 240, margin: '0 auto' }} onLogin={this.onLogin} />
-          </Card>
-        }
+            <ViewLogin style={{ width: 240, margin: '0 auto' }} onLogin={this.handleLogin} />
+          </Card>}
 
         {this.state.tab === 2 &&
           <section style={{ display: 'flex', justifyContent: 'center' }}>
             <Card title='创建新文件' style={{ width: 300, marginRight: 20 }}>
               <Result
                 icon={<Icon type='edit' theme='twoTone' />}
-                extra={<Button type='primary' onClick={this.onStart}>开始</Button>}
+                extra={<Button type='primary' onClick={this.handleStart}>开始</Button>}
               />
             </Card>
             <Card title='上传文件进行编辑' style={{ width: 300 }}>
               <ViewUpload onUpload={file => this.onUpload(file, false)} />
             </Card>
-          </section>
-        }
+          </section>}
       </section>
     )
   }

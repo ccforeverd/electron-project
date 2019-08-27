@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-import { Empty, Button  } from 'antd'
+import { Empty, Button } from 'antd'
 
 @inject('data')
 @inject('view')
 @observer
 class ContentEmpty extends Component {
-  append = () => {
+  handleAppend = () => {
     this.props.view.dialogAppend()
   }
 
@@ -20,11 +20,8 @@ class ContentEmpty extends Component {
         description={isEditable ? '没有数据' : '没有数据'}
       >
         {isEditable
-          ? <Button type='primary' onClick={this.append}>
-            添加数据
-          </Button>
-          : ''
-        }
+          ? <Button type='primary' onClick={this.handleAppend}>添加数据</Button>
+          : ''}
       </Empty>
     )
   }

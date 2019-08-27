@@ -6,7 +6,7 @@ import { Empty, Button } from 'antd'
 @inject('view')
 class MainEmpty extends Component {
   render () {
-    const { isEditable,  data, view } = this.props
+    const { isEditable, data, view } = this.props
 
     return (
       <Empty
@@ -16,8 +16,7 @@ class MainEmpty extends Component {
       >
         {isEditable
           ? <Button type='primary' onClick={() => data.setData(data.createRoot())}>创建</Button>
-          : <Button type='primary' onClick={() => view.gotoEntrance()}>去上传</Button>
-        }
+          : <Button type='primary' onClick={() => view.gotoEntrance()}>去上传</Button>}
       </Empty>
     )
   }

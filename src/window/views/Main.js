@@ -17,7 +17,6 @@ const { Content, Sider } = Layout
 @inject('user')
 @observer
 class ViewMain extends Component {
-
   // 是否是空数据
   get isEmpty () {
     const { json } = this.props.data
@@ -34,24 +33,24 @@ class ViewMain extends Component {
       <main>
         {this.isEmpty
           ? <MainEmpty isEditable={this.isEditable} />
-          : <Layout style={{ minHeight: '100vh' }}>
-            <Sider style={{ background: '#fff' }}>
-              <MainMenu isEditable={this.isEditable} />
-              <MainSettings isEditable={this.isEditable} />
-            </Sider>
-            <Layout>
-              {this.isEditable &&
-                <MainHeader />
-              }
-              <Content style={{ margin: '16px' }}>
-                <MainPath />
-                <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-                  <ViewContent isEditable={this.isEditable} />
-                </div>
-              </Content>
+          : (
+            <Layout style={{ minHeight: '100vh' }}>
+              <Sider style={{ background: '#fff' }}>
+                <MainMenu isEditable={this.isEditable} />
+                <MainSettings isEditable={this.isEditable} />
+              </Sider>
+              <Layout>
+                {this.isEditable &&
+                  <MainHeader />}
+                <Content style={{ margin: '16px' }}>
+                  <MainPath />
+                  <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+                    <ViewContent isEditable={this.isEditable} />
+                  </div>
+                </Content>
+              </Layout>
             </Layout>
-          </Layout>
-        }
+          )}
         <ViewDialogs />
       </main>
     )

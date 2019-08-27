@@ -4,11 +4,14 @@
     "plugin:react/recommended"
   ],
   "plugins": [
-    "import"
+    "import",
+    "react-hooks"
   ],
   "rules": {
     "react/jsx-indent": [2, 2],
     "react/prop-types": [0],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   },
   "settings": {
     "react": {

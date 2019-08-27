@@ -20,7 +20,7 @@ class ViewContent extends Component {
 
   render () {
     const { isEditable } = this.props
-    console.log(this.item, this.isEmpty)
+    // TODO: content
 
     return {
       content: (

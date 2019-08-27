@@ -51,9 +51,7 @@ class MenuTitle extends Component {
           <Icon type={item.icon} />}
         {isEditable &&
           <Icon type='edit' onClick={this.handleEdit} />}
-        {
-          <span>{item.title}</span>
-        }
+        <span>{item.title}</span>
       </span>
     )
   }

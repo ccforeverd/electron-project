@@ -37,7 +37,7 @@ class MainSettings extends Component {
 
   render () {
     const { isEditable } = this.props
-    const MenuBody = () => isEditable
+    const overlay = isEditable
       ? (
         <Menu>
           <Menu.Item onClick={this.handleContentProject}>系统信息</Menu.Item>
@@ -54,11 +54,12 @@ class MainSettings extends Component {
 
     return (
       <Dropdown
-        overlay={MenuBody}
+        overlay={overlay}
         placement='topLeft'
       >
         <Icon
-          type='setting' style={{
+          type='setting'
+          style={{
             position: 'fixed',
             bottom: 20,
             left: 20,

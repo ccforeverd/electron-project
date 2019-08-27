@@ -42,18 +42,20 @@ class MainMenu extends Component {
                 />
               </Menu.Item>
             ))
+            const subTitle = (
+              <MenuTitle
+                item={item}
+                isEditable
+                onDelete={() => data.deleteItem(data.json.content, item)}
+                onEdit={newItem => data.updateItem(data.json.content, item, newItem)}
+              />
+            )
 
             if (isEditable) {
               return (
                 <SubMenu
-                  key={key} title={
-                    <MenuTitle
-                      item={item}
-                      isEditable
-                      onDelete={() => data.deleteItem(data.json.content, item)}
-                      onEdit={newItem => data.updateItem(data.json.content, item, newItem)}
-                    />
-                  }
+                  key={key}
+                  title={subTitle}
                 >
                   {subs}
                   <Menu.Item onClick={() => data.appendItem(item.sub, data.createSubItem())}>

@@ -22,11 +22,12 @@ class MainHeader extends Component {
 
   render () {
     return (
-      <Header style={{
-        background: '#f0f2f5',
-        textAlign: 'right',
-        borderBottom: '1px solid #fff'
-      }}
+      <Header
+        style={{
+          background: '#f0f2f5',
+          textAlign: 'right',
+          borderBottom: '1px solid #fff'
+        }}
       >
         <Button type='link' onClick={this.handleReUpload}>重新上传</Button>
         <Button type='primary' onClick={this.handleSave}>保存</Button>

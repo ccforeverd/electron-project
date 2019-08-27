@@ -8,11 +8,11 @@
   ],
   "rules": {
     "react/jsx-indent": [2, 2],
-    "react/prop-types": [0]
+    "react/prop-types": [0],
   },
   "settings": {
     "react": {
-      "version": "lastest"
+      "version": "16.9.0"
     }
   },
   "parser": "babel-eslint",

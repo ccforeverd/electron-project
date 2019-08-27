@@ -9,6 +9,7 @@
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
     "fix": "standard --fix"
   },
+  "pre-commit": "fix",
   "standard": {
     "parser": "babel-eslint",
     "globals": [
@@ -21,6 +22,7 @@
     "@babel/plugin-proposal-decorators": "^7.4.4",
     "antd": "^3.21.2",
     "babel-plugin-import": "^1.12.0",
+    "eslint-loader": "^3.0.0",
     "file-saver": "^2.0.2",
     "mobx": "^5.13.0",
     "mobx-react": "^6.1.1",
@@ -38,6 +40,7 @@
     "electron-webpack-eslint": "^5.0.1",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-react": "^7.14.3",
+    "pre-commit": "^1.2.2",
     "react-hot-loader": "^4.12.10",
     "source-map": "^0.7.3",
     "standard": "^14.0.2",

@@ -9,7 +9,7 @@ import ViewLogin from '@views/Login'
 @inject('view')
 @observer
 class ViewDialogs extends Component {
-  handleUpload = data => this.view.callbacks.upload(data)
+  upload = data => this.view.callbacks.upload(data)
 
   handleLogin = () => this.view.callbacks.login()
 
@@ -31,7 +31,7 @@ class ViewDialogs extends Component {
       <section>
         {/* 上传 */}
         <Modal title='上传配置文件' visible={dialog === 'upload'} {...sampleProps}>
-          <ViewUpload onUpload={this.handleUpload} />
+          <ViewUpload onUpload={this.upload} />
         </Modal>
 
         {/* 登录 */}

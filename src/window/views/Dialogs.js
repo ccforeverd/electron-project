@@ -11,7 +11,9 @@ import ViewLogin from '@views/Login'
 class ViewDialogs extends Component {
   render () {
     const { view, view: { dialog } } = this.props
-    const commonProps = {
+
+    // 简单浮层属性, 只有一个取消按钮
+    const sampleProps = {
       centered: true,
       closable: false,
       maskClosable: true,
@@ -23,11 +25,19 @@ class ViewDialogs extends Component {
 
     return (
       <section>
-        <Modal title='上传配置文件' visible={dialog === 'upload'} {...commonProps}>
+        {/* 上传 */}
+        <Modal title='上传配置文件' visible={dialog === 'upload'} {...sampleProps}>
           <ViewUpload onUpload={view.callbacks.upload} />
         </Modal>
-        <Modal title='登录' visible={dialog === 'login'} {...commonProps}>
+
+        {/* 登录 */}
+        <Modal title='登录' visible={dialog === 'login'} {...sampleProps}>
           <ViewLogin onLogin={view.callbacks.login} style={{ width: 240, margin: '0 auto' }} />
+        </Modal>
+
+        {/* Input */}
+        <Modal visible={dialog === 'custom'} {...view.dialogProps}>
+          {view.dialogProps.content}
         </Modal>
       </section>
     )

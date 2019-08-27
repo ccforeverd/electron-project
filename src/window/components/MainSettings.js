@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { inject } from 'mobx-react'
-import { Icon, Menu, Dropdown } from 'antd'
+import { Icon, Menu, Dropdown, Modal } from 'antd'
 
 @inject('data')
 @inject('view')
@@ -17,6 +17,20 @@ class MainSettings extends Component {
     })
   }
 
+  dialogLogout = () => {
+    Modal.confirm({
+      title: '提示',
+      content: '是否确定退出登录? 未保存的修改将会被舍弃',
+      cancelText: '取消',
+      okText: '确定',
+      onCancel: close => close(),
+      onOk: close => {
+        this.props.user.logout()
+        close()        
+      }
+    })
+  }
+
   contentProject = () => {
     this.props.view.contentProject()
     this.props.data.setCurrent()
@@ -30,12 +44,12 @@ class MainSettings extends Component {
         isEditable
         ? <Menu>
           <Menu.Item onClick={this.contentProject}>系统信息</Menu.Item>
-          <Menu.Item onClick={() => this.props.user.logout()}>退出登录/退出编辑</Menu.Item>
+          <Menu.Item onClick={this.dialogLogout}>退出登录/退出编辑</Menu.Item>
         </Menu>
         : <Menu>
           <Menu.Item onClick={this.contentProject}>系统信息</Menu.Item>
-          <Menu.Item onClick={this.dialogUpload}>重新载入配置文件</Menu.Item>
-          <Menu.Item onClick={this.dialogLogin}>登录编辑配置文件</Menu.Item>
+          <Menu.Item onClick={this.dialogUpload}>重新上传文件</Menu.Item>
+          <Menu.Item onClick={this.dialogLogin}>进入编辑模式</Menu.Item>
         </Menu>
       } placement='topLeft'>
         <Icon type='setting' style={{

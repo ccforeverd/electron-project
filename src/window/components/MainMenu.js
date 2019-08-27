@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import { Menu, Icon } from 'antd'
+
 import MenuTitle from './MenuTitle'
 
 const { SubMenu } = Menu

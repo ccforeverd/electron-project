@@ -9,7 +9,6 @@ import ViewMain from '@views/Main'
 @inject('view')
 @observer
 class App extends Component {
-
   componentDidMount () {
     const data = this.props.data.load()
 
@@ -28,10 +27,10 @@ class App extends Component {
 
     return (
       page === 'entrance'
-      ? <ViewEntrance />
-      : page === 'main'
-      ? <ViewMain />
-      : <ViewLoading />
+        ? <ViewEntrance />
+        : page === 'main'
+          ? <ViewMain />
+          : <ViewLoading />
     )
   }
 }

@@ -8,6 +8,7 @@ class StoreView {
   @observable content = ''
 
   callbacks = {}
+  dialogProps = {}
 
   @action gotoEntrance () {
     this.page = 'entrance'
@@ -33,6 +34,12 @@ class StoreView {
   @action dialogAppend (callback = noop) {
     this.dialog = 'append'
     this.callbacks.append = callback
+  }
+
+  // 展示输入浮层
+  @action dialogCustom (dialogProps) {
+    this.dialog = 'custom'
+    this.dialogProps = dialogProps
   }
 
   // 关闭浮层

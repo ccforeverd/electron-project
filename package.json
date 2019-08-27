@@ -6,7 +6,11 @@
     "dev": "electron-webpack dev",
     "compile": "electron-webpack",
     "dist": "yarn compile && electron-builder --win portable",
-    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
+    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
+    "fix": "standard --fix"
+  },
+  "standard": {
+    "parser": "babel-eslint"
   },
   "dependencies": {
     "@antv/g6": "^3.0.5-beta.7",
@@ -32,6 +36,7 @@
     "eslint-plugin-react": "^7.14.3",
     "react-hot-loader": "^4.12.10",
     "source-map": "^0.7.3",
+    "standard": "^14.0.2",
     "webpack": "~4.35.3",
     "webpack-build-notifier": "^1.0.3"
   }

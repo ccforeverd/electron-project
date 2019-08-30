@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import { Layout } from 'antd'
 
-import MainEmpty from '@components/MainEmpty'
-import MainHeader from '@components/MainHeader'
-import MainMenu from '@components/MainMenu'
-import MainPath from '@components/MainPath'
-import MainSettings from '@components/MainSettings'
+import MainEmpty from '@/goverment/components/MainEmpty'
+import MainHeader from '@/goverment/components/MainHeader'
+import MainMenu from '@/goverment/components/MainMenu'
+import MainPath from '@/goverment/components/MainPath'
+import MainSettings from '@/goverment/components/MainSettings'
 
-import ViewContent from '@views/Content'
-import ViewDialogs from '@views/Dialogs'
+import ViewContent from '@/goverment/views/Content'
+import ViewDialogs from '@/goverment/views/Dialogs'
 
 const { Content, Sider } = Layout
 

@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import { Modal, Button } from 'antd'
 
-import ViewUpload from '@views/Upload'
-import ViewLogin from '@views/Login'
+import ViewUpload from '@/goverment/views/Upload'
+import ViewLogin from '@/goverment/views/Login'
 
 @inject('data')
 @inject('view')

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 
-import ViewEntrance from '@views/Entrance'
-import ViewLoading from '@views/Loading'
-import ViewMain from '@views/Main'
+import ViewEntrance from '@/goverment/views/Entrance'
+import ViewLoading from '@/goverment/views/Loading'
+import ViewMain from '@/goverment/views/Main'
 
 @inject('data')
 @inject('view')

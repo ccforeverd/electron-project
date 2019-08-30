@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 
-import ContentEmpty from '@components/ContentEmpty'
+import ContentEmpty from '@/goverment/components/ContentEmpty'
 
-import ViewProject from '@views/Project'
+import ViewProject from '@/goverment/views/Project'
 
 const priceFromImage = `
 _ ¥5009
@@ -104,7 +104,7 @@ class ViewContent extends Component {
       })
     numberFromBoss.split('\n')
       .filter(text => text.trim())
-      .reduce()
+      // .reduce()
     console.log(result)
     return result
   }

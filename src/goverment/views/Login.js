@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import { Form, Input, Icon, Button, message } from 'antd'
 
-import admin from '@config/admin'
+import admin from '@/goverment/config/admin'
 
 @inject('user')
 @observer

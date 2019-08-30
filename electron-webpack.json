@@ -7,7 +7,7 @@
     "webpackConfig": "build/webpack.main.js"
   },
   "renderer": {
-    "sourceDirectory": "src/window",
+    "sourceDirectory": "src/du",
     "webpackConfig": "build/webpack.renderer.js"
   }
 }

@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import { Card, Result, Icon, Button } from 'antd'
 
-import ViewLogin from '@views/Login'
-import ViewUpload from '@views/Upload'
+import ViewLogin from '@/goverment/views/Login'
+import ViewUpload from '@/goverment/views/Upload'
 
 @inject('data')
 @inject('view')

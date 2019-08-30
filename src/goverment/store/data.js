@@ -3,8 +3,8 @@ import fs from 'fs'
 import FileSaver from 'file-saver'
 import { observable, action } from 'mobx'
 
-import StoreSystem from '@store/system'
-import tmp from '@config/tmp'
+import StoreSystem from '@/goverment/store/system'
+import tmp from '@/goverment/config/tmp'
 
 const system = new StoreSystem()
 

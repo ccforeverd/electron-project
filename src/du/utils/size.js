@@ -30,7 +30,7 @@ export const nikeMen = [
   [30, 31.5, 48, 12.5, 13.5]
 ]
 
-export const nikeWemen = [
+export const nikeWomen = [
   // 脚长(厘米) CM尺码 欧码 英码 美码
   [22, 22, 35.5, 2.5, 5],
   [22.4, 22.5, 36, 3, 5.5],

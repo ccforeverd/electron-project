@@ -13,7 +13,8 @@
   "standard": {
     "parser": "babel-eslint",
     "globals": [
-      "File"
+      "File",
+      "FileReader"
     ]
   },
   "dependencies": {

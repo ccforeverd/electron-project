@@ -1,6 +1,9 @@
-// import path from 'path'
+import fs from 'fs'
+import path from 'path'
+import { remote, shell } from 'electron'
 import React, { Component } from 'react'
-import { Tabs, Input, Row, Col, Table, Upload, Icon, Switch, Select, Card, Divider, Layout, Button } from 'antd'
+import { Tabs, Input, Row, Col, Table, Upload, Icon, Switch, Select, Card, Divider, Layout, Button, Modal } from 'antd'
+import xlsx from 'node-xlsx'
 
 import { captions, nikeMen, nikeWomen } from './utils/size'
 import { parseNumbersString, parseImageString } from './utils/dataParse'
@@ -10,6 +13,7 @@ import mockImage from './mock/image'
 
 import sampleImage from './assets/sample.png'
 
+const { dialog } = remote
 const { TabPane } = Tabs
 const { TextArea } = Input
 const { Dragger } = Upload
@@ -25,7 +29,39 @@ class App extends Component {
     showImage: [], // 图片价格展示列表
     showPreview: '', // 预览上传图片
     showSex: 'male', // female 男码或女码
-    showTable: [] // 最终大表格
+    showTable: [], // 最终大表格
+    showTableColumns: [ // 大表格结构
+      {
+        title: 'Size',
+        dataIndex: 'size',
+        key: 'size'
+      },
+      {
+        title: 'Count',
+        dataIndex: 'number',
+        key: 'number'
+      },
+      {
+        title: 'Desc',
+        dataIndex: 'imageSize',
+        key: 'imageSize'
+      },
+      {
+        title: 'Price',
+        dataIndex: 'price',
+        key: 'price'
+      },
+      {
+        title: '3.5%',
+        dataIndex: 'price1',
+        key: 'price1'
+      },
+      {
+        title: '5%',
+        dataIndex: 'price2',
+        key: 'price2'
+      }
+    ]
   }
 
   handleInput = (e, key) => {
@@ -56,7 +92,40 @@ class App extends Component {
   }
 
   handleDownload = () => {
-    console.log(1)
+    const columns = this.state.showTableColumns
+    const data = [
+      columns.map(item => item.title),
+      Array(columns.length).fill(''),
+      ...this.state.showTable.map(item => columns.map(col => item[col.dataIndex] || ''))
+    ]
+    // TODO: 列宽调整
+    const uint8 = xlsx.build([{ name: 'sheet1', data }])
+    // 参考: https://github.com/SheetJS/js-xlsx
+    // 参考: https://github.com/SheetJS/js-xlsx/blob/master/demos/electron/index.js
+    const targetPath = dialog.showSaveDialogSync({
+      title: 'Save file as',
+      defaultPath: 'SneakerSheet',
+      filters: [{
+        name: 'SneakerSheet',
+        extensions: 'xls|xlsx|xlsm|xlsb'.split('|')
+      }]
+    })
+
+    if (targetPath) {
+      fs.writeFileSync(targetPath, uint8, 'utf8')
+      Modal.confirm({
+        title: '下载成功!',
+        okText: '打开文件',
+        icon: <Icon type='check-circle' style={{ color: '#52c41a' }} />,
+        onOk: () => {
+          shell.openItem(targetPath)
+        },
+        cancelText: '打开文件夹',
+        onCancel: () => {
+          shell.openItem(path.dirname(targetPath))
+        }
+      })
+    }
   }
 
   beforeUpload = async file => {
@@ -239,8 +308,6 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    this.handleInput()
-
     // 测试
     setTimeout(() => {
       this.parseNumberText(mockNumbers)
@@ -399,38 +466,7 @@ class App extends Component {
         <Tabs defaultActiveKey='1' tabBarExtraContent={sexButton}>
           <TabPane tab='表格' key='1'>
             <Table
-              columns={[
-                {
-                  title: 'Size',
-                  dataIndex: 'size',
-                  key: 'size'
-                },
-                {
-                  title: 'Count',
-                  dataIndex: 'number',
-                  key: 'number'
-                },
-                {
-                  title: 'Desc',
-                  dataIndex: 'imageSize',
-                  key: 'imageSize'
-                },
-                {
-                  title: 'Price',
-                  dataIndex: 'price',
-                  key: 'price'
-                },
-                {
-                  title: '3.5%',
-                  dataIndex: 'price1',
-                  key: 'price1'
-                },
-                {
-                  title: '5%',
-                  dataIndex: 'price2',
-                  key: 'price2'
-                }
-              ]}
+              columns={this.state.showTableColumns}
               dataSource={this.state.showTable}
               pagination={false}
             />
@@ -438,7 +474,7 @@ class App extends Component {
               this.state.showTable.length
                 ? (
                   <Divider>
-                    <Button onClick={this.handleDownload}>下载报表</Button>
+                    <Button onClick={this.handleDownload}>⬇️下载报表</Button>
                   </Divider>
                 )
                 : ''
@@ -449,7 +485,9 @@ class App extends Component {
           <Divider>Got`em</Divider>
           感谢使用~~
           有改进意见请发送邮件到
-          <a href='mailto:zh1045456074@163.com'>zh1045456074@163.com</a>
+          🍋
+          <a href='mailto:zh1045456074@163.com'>🍋zh1045456074@163.com 🍋</a>
+          🍋
         </Footer>
       </main>
     )

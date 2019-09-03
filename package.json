@@ -14,7 +14,8 @@
     "parser": "babel-eslint",
     "globals": [
       "File",
-      "FileReader"
+      "FileReader",
+      "__static"
     ]
   },
   "dependencies": {

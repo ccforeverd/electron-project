@@ -1,9 +1,18 @@
 import fs from 'fs'
 import path from 'path'
-import { remote, shell } from 'electron'
+import { remote, shell, clipboard } from 'electron'
 import React, { Component } from 'react'
-import { Tabs, Input, Row, Col, Table, Upload, Icon, Switch, Select, Card, Divider, Layout, Button, Modal } from 'antd'
+import {
+  Button, Icon, // 通用
+  Row, Col, Layout, // 布局
+  Input, Switch, Select, Upload, // 数据录入
+  Tabs, Table, Card, // 数据展示
+  Modal, message, // 反馈
+  Divider // 其他
+} from 'antd'
 import xlsx from 'node-xlsx'
+// import Tesseract from 'tesseract.js/dist/tesseract'
+import Tesseract from 'tesseract.js'
 
 import { captions, nikeMen, nikeWomen } from './utils/size'
 import { parseNumbersString, parseImageString } from './utils/dataParse'
@@ -28,6 +37,7 @@ class App extends Component {
     inputTotal: 0, // 输入的总价
     showImage: [], // 图片价格展示列表
     showPreview: '', // 预览上传图片
+    showImageText: '', // 图片读取出的文字
     showSex: 'male', // female 男码或女码
     showTable: [], // 最终大表格
     showTableColumns: [ // 大表格结构
@@ -91,6 +101,21 @@ class App extends Component {
     this.handleInput()
   }
 
+  handleShowText = () => {
+    Modal.confirm({
+      title: '原始文字',
+      content: <pre>{this.state.showImageText}</pre>,
+      centered: true,
+      okText: '复制',
+      icon: <Icon type='code' />,
+      onOk: () => {
+        clipboard.writeText(this.state.showImageText)
+        message.success('复制成功!')
+      },
+      cancelText: '取消'
+    })
+  }
+
   handleDownload = () => {
     const columns = this.state.showTableColumns
     const data = [
@@ -98,8 +123,12 @@ class App extends Component {
       Array(columns.length).fill(''),
       ...this.state.showTable.map(item => columns.map(col => item[col.dataIndex] || ''))
     ]
-    // TODO: 列宽调整
-    const uint8 = xlsx.build([{ name: 'sheet1', data }])
+    // 参考: https://github.com/mgcrea/node-xlsx
+    const uint8 = xlsx.build([
+      { name: 'sheet1', data } // 只有一个报表
+    ], {
+      '!cols': columns.map(() => ({ wch: 12 })) // 列宽
+    })
     // 参考: https://github.com/SheetJS/js-xlsx
     // 参考: https://github.com/SheetJS/js-xlsx/blob/master/demos/electron/index.js
     const targetPath = dialog.showSaveDialogSync({
@@ -129,9 +158,10 @@ class App extends Component {
   }
 
   beforeUpload = async file => {
+    const hideLoading = message.loading('Reading image...', 0)
+
     // 预览
     const preview = new FileReader()
-    preview.readAsDataURL(file)
     preview.onload = () => {
       this.setState({
         showPreview: preview.result
@@ -139,11 +169,20 @@ class App extends Component {
     }
 
     // 读取
-    // const text = await this.readImage(file.path)
-    const text = mockImage // 测试
+    const worker = new Tesseract.TesseractWorker()
+    const result = await worker.recognize(file.path, 'eng', {
+      'tessedit_ocr_engine_mode': Tesseract.OEM.TESSERACT_ONLY, // eslint-disable-line quote-props
+      'tessedit_char_whitelist': '0123456789-./¥' // eslint-disable-line quote-props
+    })
+    console.log(result.text)
+    this.setState({
+      showImageText: result.text
+    })
 
     // 展示
-    this.parseImageText(text)
+    preview.readAsDataURL(file)
+    this.parseImageText(result.text)
+    hideLoading()
 
     return false
   }
@@ -409,6 +448,20 @@ class App extends Component {
                   <p className='ant-upload-hint'>只支持.jpg,.jpeg,.png格式</p>
                 </Dragger>
                 <div style={{ width: '100%', position: 'relative' }}>
+                  {
+                    this.state.showImageText
+                      ? (
+                        <Button
+                          block
+                          type='dashed'
+                          style={{ marginTop: 16 }}
+                          onClick={this.handleShowText}
+                        >
+                          展示图片读取文字
+                        </Button>
+                      )
+                      : ''
+                  }
                   {
                     this.state.showPreview
                       ? ''

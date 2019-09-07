@@ -7,11 +7,15 @@
     "compile": "electron-webpack",
     "dist": "yarn compile && electron-builder --win portable",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
-    "fix": "standard --fix"
+    "fix": "standard --fix",
+    "test": "jest"
   },
   "pre-commit": "fix",
   "standard": {
     "parser": "babel-eslint",
+    "ignore": [
+      "*.test.js"
+    ],
     "globals": [
       "Blob",
       "File",
@@ -47,6 +51,7 @@
     "electron-webpack-eslint": "^5.0.1",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-react": "^7.14.3",
+    "jest": "^24.9.0",
     "pre-commit": "^1.2.2",
     "react-hot-loader": "^4.12.12",
     "source-map": "^0.7.3",

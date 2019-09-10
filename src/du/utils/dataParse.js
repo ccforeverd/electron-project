@@ -10,20 +10,24 @@ export function parseImageString (string) {
     // 苹果下横线瑕疵
     .replace(/(\d+)-(\d+)/g, (s, s1, s2) => `${s1} ${s2}`)
     // 阿迪读取瑕疵
-    .replace('362/43', '362/3')
-    .replace('402/43', '402/3')
+    // .replace(/2\/43/g, '2/3')
+    // .replace('362/43', '362/3')
+    // .replace('402/43', '402/3')
+    // .replace('422/43', '422/3')
     // 阿迪转耐克
-    .replace('362/3', '36.5')
-    .replace('371/3', '37')
-    .replace('382/3', '38.5')
-    .replace('391/3', '39')
-    .replace('402/3', '40.5')
-    .replace('411/3', '41')
-    .replace('422/3', '42.5')
-    .replace('431/3', '43')
-    .replace('442/3', '44.5')
-    .replace('451/3', '45')
-    .replace(/^[\s\S\d -¥]*$/, s => !console.log(s) && s) // 打印当前字符串
+    // .replace('362/3', '36.5')
+    // .replace('371/3', '37')
+    // .replace('382/3', '38.5')
+    // .replace('391/3', '39')
+    // .replace('402/3', '40.5')
+    // .replace('411/3', '41')
+    // .replace('422/3', '42.5')
+    // .replace('431/3', '43')
+    // .replace('442/3', '44.5')
+    // .replace('451/3', '45')
+    .replace(/2\/4?3/g, '.5')
+    .replace(/1\/3/g, '')
+    // .replace(/^[\s\S\d -¥]*$/, s => !console.log(s) && s) // 打印当前字符串
     // 转数组处理
     .split(/\n/)
     .map(text => text.trim()) // 去掉前后空格

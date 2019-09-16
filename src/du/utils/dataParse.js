@@ -1,5 +1,5 @@
 
-export const regMutiply = /[*xX]/
+export const regMutiply = /[*xX×]/
 export const regSize = /\d{1,2}\.?5?/
 export const resBlank = / +/
 

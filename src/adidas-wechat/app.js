@@ -1,16 +1,122 @@
-import React, { Component } from 'react'
-// import { useTranslation } from 'react-i18next'
+import React from 'react'
 import i18n from 'i18next'
-// import i18n from './i18n'
+import { makeStyles } from '@material-ui/core/styles'
+import Stepper from '@material-ui/core/Stepper'
+import Step from '@material-ui/core/Step'
+import StepLabel from '@material-ui/core/StepLabel'
+import StepContent from '@material-ui/core/StepContent'
+import Button from '@material-ui/core/Button'
+import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
 
-class App extends Component {
-  render () {
-    // const { t } = useTranslation()
+import NoteBeforeStart from './components/NoteBeforeStart'
+import InputPersonalInfo from './components/InputPersonalInfo'
 
-    return (
-      <main>{i18n.t('hello world')}</main>
-    )
+import './style/base.scss'
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    width: '100%',
+    minHeight: '100vh',
+    background: theme.palette.background.default,
+    display: 'table'
+  },
+  box: {
+    margin: theme.spacing(4)
+  },
+  button: {
+    marginTop: theme.spacing(1),
+    marginRight: theme.spacing(1)
+  },
+  actionsContainer: {
+    marginBottom: theme.spacing(2)
+  },
+  resetContainer: {
+    padding: theme.spacing(3)
+  }
+}))
+
+function getSteps () {
+  return [...Array(7)].map((item, index) => i18n.t(`step-${index + 1}`))
+}
+
+function getStepContent (step, setActiveStep) {
+  switch (step) {
+    case 0:
+      return (
+        <NoteBeforeStart onNext={() => setActiveStep(1)} />
+      )
+    case 1:
+      return (
+        <InputPersonalInfo onNext={() => setActiveStep(2)} />
+      )
+    case 2:
+      return `Try out different ad text to see what brings in the most customers,
+              and learn how to enhance your ads using features like ad extensions.
+              If you run into any problems with your ads, find out how to tell if
+              they're running and how to resolve approval issues.`
+    default:
+      return 'Unknown step'
   }
 }
 
-export default App
+export default function VerticalLinearStepper () {
+  const classes = useStyles()
+  const [activeStep, setActiveStep] = React.useState(0)
+  const steps = getSteps()
+
+  // const handleNext = () => {
+  //   setActiveStep(prevActiveStep => prevActiveStep + 1)
+  // }
+
+  // const handleBack = () => {
+  //   setActiveStep(prevActiveStep => prevActiveStep - 1)
+  // }
+
+  const handleReset = () => {
+    setActiveStep(0)
+  }
+
+  return (
+    <div className={classes.root}>
+      <Stepper className={classes.box} activeStep={activeStep} orientation='vertical'>
+        {steps.map((label, index) => (
+          <Step key={label}>
+            <StepLabel>{i18n.t(label)}</StepLabel>
+            <StepContent>
+              {getStepContent(index, setActiveStep)}
+              {/* <Typography></Typography> */}
+              {/* <div className={classes.actionsContainer}>
+                <div>
+                  <Button
+                    disabled={activeStep === 0}
+                    onClick={handleBack}
+                    className={classes.button}
+                  >
+                    Back
+                  </Button>
+                  <Button
+                    variant='contained'
+                    color='primary'
+                    onClick={handleNext}
+                    className={classes.button}
+                  >
+                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                  </Button>
+                </div>
+              </div> */}
+            </StepContent>
+          </Step>
+        ))}
+      </Stepper>
+      {activeStep === steps.length && (
+        <Paper square elevation={0} className={classes.resetContainer}>
+          <Typography>All steps completed - you&apos;re finished</Typography>
+          <Button onClick={handleReset} className={classes.button}>
+            Reset
+          </Button>
+        </Paper>
+      )}
+    </div>
+  )
+}

@@ -1,6 +1,8 @@
 import React from 'react'
+// import {  } from 'mobx-react'
 import i18n from 'i18next'
-import { makeStyles } from '@material-ui/core/styles'
+import format from 'date-fns/format'
+import { makeStyles, createMuiTheme } from '@material-ui/core/styles'
 import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
@@ -8,11 +10,25 @@ import StepContent from '@material-ui/core/StepContent'
 import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
+import green from '@material-ui/core/colors/green'
+import { ThemeProvider } from '@material-ui/styles'
 
+import InputInfo from './components/InputInfo'
 import NoteBeforeStart from './components/NoteBeforeStart'
-import InputPersonalInfo from './components/InputPersonalInfo'
+import WechatScan from './components/WechatScan'
 
 import './style/base.scss'
+
+const darkTheme = createMuiTheme({
+  palette: {
+    primary: green,
+    type: 'dark'
+  }
+})
+
+const store = {
+  info: {}
+}
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -37,10 +53,20 @@ const useStyles = makeStyles(theme => ({
 }))
 
 function getSteps () {
-  return [...Array(7)].map((item, index) => i18n.t(`step-${index + 1}`))
+  return [...Array(6)].map((item, index) => i18n.t(`step-${index + 1}`))
 }
 
 function getStepContent (step, setActiveStep) {
+  const handleInputNext = values => () => {
+    store.info.id = values.id
+    store.info.phone = values.phone
+    store.info.size = values.size || 'D'
+    store.info.start = values.start || 'YEEZY北京'
+    store.info.time = values.time || new Date(`${format(Date.now(), 'yyyy-MM-dd')} 10:00:00`)
+    console.log(store)
+    setActiveStep(2)
+  }
+
   switch (step) {
     case 0:
       return (
@@ -48,21 +74,20 @@ function getStepContent (step, setActiveStep) {
       )
     case 1:
       return (
-        <InputPersonalInfo onNext={() => setActiveStep(2)} />
+        <InputInfo onNext={handleInputNext} />
       )
     case 2:
-      return `Try out different ad text to see what brings in the most customers,
-              and learn how to enhance your ads using features like ad extensions.
-              If you run into any problems with your ads, find out how to tell if
-              they're running and how to resolve approval issues.`
+      return (
+        <WechatScan onNext={() => setActiveStep(3)} />
+      )
     default:
       return 'Unknown step'
   }
 }
 
 export default function VerticalLinearStepper () {
-  const classes = useStyles()
-  const [activeStep, setActiveStep] = React.useState(0)
+  const style = useStyles()
+  const [activeStep, setActiveStep] = React.useState(1)
   const steps = getSteps()
 
   // const handleNext = () => {
@@ -78,20 +103,20 @@ export default function VerticalLinearStepper () {
   }
 
   return (
-    <div className={classes.root}>
-      <Stepper className={classes.box} activeStep={activeStep} orientation='vertical'>
+    <ThemeProvider theme={darkTheme} className={style.root}>
+      <Stepper className={style.box} activeStep={activeStep} orientation='vertical'>
         {steps.map((label, index) => (
           <Step key={label}>
             <StepLabel>{i18n.t(label)}</StepLabel>
             <StepContent>
               {getStepContent(index, setActiveStep)}
               {/* <Typography></Typography> */}
-              {/* <div className={classes.actionsContainer}>
+              {/* <div className={style.actionsContainer}>
                 <div>
                   <Button
                     disabled={activeStep === 0}
                     onClick={handleBack}
-                    className={classes.button}
+                    className={style.button}
                   >
                     Back
                   </Button>
@@ -99,7 +124,7 @@ export default function VerticalLinearStepper () {
                     variant='contained'
                     color='primary'
                     onClick={handleNext}
-                    className={classes.button}
+                    className={style.button}
                   >
                     {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                   </Button>
@@ -110,13 +135,13 @@ export default function VerticalLinearStepper () {
         ))}
       </Stepper>
       {activeStep === steps.length && (
-        <Paper square elevation={0} className={classes.resetContainer}>
+        <Paper square elevation={0} className={style.resetContainer}>
           <Typography>All steps completed - you&apos;re finished</Typography>
-          <Button onClick={handleReset} className={classes.button}>
+          <Button onClick={handleReset} className={style.button}>
             Reset
           </Button>
         </Paper>
       )}
-    </div>
+    </ThemeProvider>
   )
 }

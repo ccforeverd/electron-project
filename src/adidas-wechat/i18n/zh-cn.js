@@ -15,6 +15,7 @@ export default {
     'step-4': '选择公众号',
     'step-5': '等待活动开始',
     'step-6': '写在后面',
+    'step-back': '上一步',
 
     // 写在前面
     'note-1': '*请确认你的微信可以登录网页端微信 wx.qq.com',
@@ -37,6 +38,10 @@ export default {
     'input-start-holder': 'YEEZY北京 (选填)',
     'input-time-label': '开始时间',
     'input-time-holder': '10:00:00 (选填)',
+    'input-save': '保存信息',
+
+    // 扫描二维码
+    'scan-button': '点击登录',
 
     // 写在后面
     'note2-1': '请在手机端退出网页微信的登录',

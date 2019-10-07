@@ -14,6 +14,10 @@ module.exports = config => {
   })
 
   return merge.smart(config, {
+    externals: [
+      'react',
+      'react-dom'
+    ],
     resolve: {
       alias
     }

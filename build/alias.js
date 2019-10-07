@@ -7,7 +7,9 @@ const resolve = dir => path.resolve(__dirname, '../', dir)
 module.exports = Object.keys(paths).reduce((result, key) => {
   result[key.replace('/*', '')] = resolve(paths[key].toString().replace('/*', ''))
   return result
-}, {})
+}, {
+  react: resolve('node_modules/react')
+})
 
 // module.exports = {
 //   '@': resolve('src'),

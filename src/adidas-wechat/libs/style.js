@@ -33,5 +33,12 @@ export const useStyles = makeStyles(theme => ({
   },
   back: {
     marginRight: theme.spacing(1)
+  },
+  code: {
+    display: 'block',
+    width: theme.spacing(30)
+  },
+  codeBottom: {
+    justifyContent: 'center'
   }
 }))

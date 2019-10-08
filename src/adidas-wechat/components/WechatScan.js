@@ -1,11 +1,13 @@
 import React from 'react'
 import format from 'date-fns/format'
 import { useTranslation } from 'react-i18next'
-import { Button, Dialog } from '@material-ui/core'
+import { Button, Dialog, DialogContent, DialogActions } from '@material-ui/core'
 import { Statistic } from 'antd'
 
 import { useStyles } from '../libs/style'
 import { fixValues } from '../libs/utils'
+
+import ImageTempCode from '../assets/QR.png'
 
 const { Countdown } = Statistic
 
@@ -35,7 +37,10 @@ export default function WechatScan (props) {
         }
       </Button>
       <Dialog onClose={handleClose} open={open}>
-        123
+        <DialogContent dividers>
+          <img className={style.code} src={ImageTempCode} alt='code' />
+        </DialogContent>
+        <DialogActions className={style.codeBottom}>使用微信扫描二维码</DialogActions>
       </Dialog>
     </section>
   )

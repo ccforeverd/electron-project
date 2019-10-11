@@ -19,6 +19,7 @@ export default function WechatScan (props) {
 
   const handleClick = () => {
     setOpen(true)
+    props.onCodeShow()
   }
 
   const handleClose = () => {

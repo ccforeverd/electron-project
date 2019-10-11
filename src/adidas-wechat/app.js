@@ -1,6 +1,7 @@
 import React from 'react'
 // import { useLocalStore, useObserver } from 'mobx-react'
 import i18n from 'i18next'
+import { Wechaty } from 'wechaty'
 import { Stepper, Step, StepLabel, StepContent, Button, Paper, Typography } from '@material-ui/core'
 import { createMuiTheme } from '@material-ui/core/styles'
 import green from '@material-ui/core/colors/green'
@@ -10,6 +11,19 @@ import { useStyles } from './libs/style'
 import { InputInfo, NoteBeforeStart, WechatScan } from './components'
 
 import './css/base.scss'
+
+const bot = new Wechaty({
+  name: 'gotem-wechat-bot',
+  puppet: 'wechaty-puppet-wechat4u',
+  // ...
+  puppetOptions: {
+    // endpoint: '<executablePath>'
+  }
+})
+bot.on('scan', (qrcode, status) => console.log(status, ['https://api.qrserver.com/v1/create-qr-code/?data=', encodeURIComponent(qrcode), '&size=220x220&margin=20'].join('')))
+bot.on('login', user => console.log(`User ${user} logined`))
+bot.on('message', message => console.log(`Message: ${message}`))
+bot.start()
 
 const darkTheme = createMuiTheme({
   palette: {
@@ -48,6 +62,10 @@ export default function App () {
     handleNext()
   }
 
+  const handleCodeShow = () => {
+    bot.start()
+  }
+
   const handleReset = () => {
     setActiveStep(0)
   }
@@ -64,10 +82,18 @@ export default function App () {
                   <NoteBeforeStart onNext={handleNext} />
                 )}
                 {index === 1 && (
-                  <InputInfo values={values} onBack={handleBack} onNext={handleInputNext} />
+                  <InputInfo
+                    values={values}
+                    onBack={handleBack}
+                    onNext={handleInputNext}
+                  />
                 )}
                 {index === 2 && (
-                  <WechatScan values={values} onBack={handleBack} onNext={() => handleNext} />
+                  <WechatScan
+                    values={values}
+                    onBack={handleBack}
+                    onCodeShow={handleCodeShow}
+                  />
                 )}
               </StepContent>
             </Step>

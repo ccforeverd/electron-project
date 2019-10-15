@@ -4,8 +4,10 @@
     "paths": {
       "@/*": ["src/*"],
       "@client/*": ["src/client/*"],
-      "@goverment/*": ["src/goverment/*"],
-      "@du/*": ["src/du/*"]
+      "@goverment/*": ["src/apps/goverment/*"],
+      "@du/*": ["src/apps/du/*"],
+      "@adidas-wechat": ["src/apps/adidas-wechat/*"],
+      "@node": ["src/node/*"]
     },
     "experimentalDecorators": true
   }

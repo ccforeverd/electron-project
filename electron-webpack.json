@@ -7,7 +7,7 @@
     "webpackConfig": "build/webpack.main.js"
   },
   "renderer": {
-    "sourceDirectory": "src/adidas-wechat",
+    "sourceDirectory": "src/apps/adidas-wechat",
     "webpackConfig": "build/webpack.renderer.js"
   }
 }

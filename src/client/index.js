@@ -1,5 +1,6 @@
 'use strict'
 
+// import childProcess from 'child_process'
 import { app, BrowserWindow } from 'electron'
 import * as path from 'path'
 import { format as formatUrl } from 'url'
@@ -13,7 +14,10 @@ function createMainWindow () {
   const window = new BrowserWindow({
     frame: false,
     transparent: true,
-    webPreferences: { nodeIntegration: true }
+    webPreferences: {
+      nodeIntegration: true,
+      webSecurity: false
+    }
   })
 
   if (isDevelopment) {
@@ -61,5 +65,22 @@ app.on('activate', () => {
 
 // create main BrowserWindow when electron is ready
 app.on('ready', () => {
+  // const child = childProcess.fork(
+  //   './node',
+  //   ['./wechaty.js'],
+  //   {
+  //     // cwd: electron.remote.app.getAppPath()
+  //     cwd: process.cwd()
+  //   }
+  // )
+  // child.on('message', data => {
+  //   console.log(data)
+  // })
+  // setTimeout(() => child.send({ aaa: 111 }), 1000)
+  require('child_process').fork(
+    './node',
+    ['./wechat.js']
+  )
+
   mainWindow = createMainWindow()
 })

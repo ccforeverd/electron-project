@@ -1,7 +1,11 @@
+// import path from 'path'
 import React from 'react'
+// import electron from 'electron'
 // import { useLocalStore, useObserver } from 'mobx-react'
 import i18n from 'i18next'
-import { Wechaty } from 'wechaty'
+// import { Wechaty } from 'wechaty'
+// import { IoClient } from 'wechaty'
+// import Wechat4u from 'wechat4u'
 import { Stepper, Step, StepLabel, StepContent, Button, Paper, Typography } from '@material-ui/core'
 import { createMuiTheme } from '@material-ui/core/styles'
 import green from '@material-ui/core/colors/green'
@@ -12,18 +16,28 @@ import { InputInfo, NoteBeforeStart, WechatScan } from './components'
 
 import './css/base.scss'
 
-const bot = new Wechaty({
-  name: 'gotem-wechat-bot',
-  puppet: 'wechaty-puppet-wechat4u',
-  // ...
-  puppetOptions: {
-    // endpoint: '<executablePath>'
-  }
-})
-bot.on('scan', (qrcode, status) => console.log(status, ['https://api.qrserver.com/v1/create-qr-code/?data=', encodeURIComponent(qrcode), '&size=220x220&margin=20'].join('')))
-bot.on('login', user => console.log(`User ${user} logined`))
-bot.on('message', message => console.log(`Message: ${message}`))
-bot.start()
+// const bot = new Wechaty({
+//   name: 'gotem-wechat-bot',
+//   puppet: 'wechaty-puppet-wechat4u',
+//   // puppet: 'wechaty-puppet-puppeteer',
+//   // ...
+//   puppetOptions: {
+//     // endpoint: '<executablePath>'
+//   }
+// })
+// bot.on('scan', (qrcode, status) => console.log(status, ['https://api.qrserver.com/v1/create-qr-code/?data=', encodeURIComponent(qrcode), '&size=220x220&margin=20'].join('')))
+// bot.on('login', user => console.log(`User ${user} logined`))
+// bot.on('message', message => console.log(`Message: ${message}`))
+// bot.start()
+
+// const bot = new Wechat4u()
+
+// const client = new IoClient({
+//   token: 'WECHATY_IO_TOKEN'
+// })
+
+// client.init()
+//   .then(_ => console.log(_))
 
 const darkTheme = createMuiTheme({
   palette: {
@@ -63,7 +77,8 @@ export default function App () {
   }
 
   const handleCodeShow = () => {
-    bot.start()
+    window.alert(1)
+    // bot.start()
   }
 
   const handleReset = () => {

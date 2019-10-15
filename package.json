@@ -9,7 +9,8 @@
     "dist:mac": "yarn compile && electron-builder --mac",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
     "fix": "standard --fix",
-    "test": "jest"
+    "test": "jest",
+    "start": "node ./start.js"
   },
   "pre-commit": "fix",
   "standard": {
@@ -54,6 +55,7 @@
     "typeface-roboto": "^0.0.75",
     "validator": "^11.1.0",
     "webpack-merge": "^4.2.2",
+    "wechat4u": "^0.7.7",
     "wechaty": "^0.28.3",
     "wechaty-puppet-puppeteer": "^0.18.3",
     "wechaty-puppet-wechat4u": "^0.16.3"

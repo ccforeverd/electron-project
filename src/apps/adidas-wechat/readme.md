@@ -1,7 +1,5 @@
 # 基于 Wechaty 的阿迪达斯微信抽签工具
 
-用到了:
-
 - [ ] i18n 多语言处理
   - 文档: <https://react.i18next.com>
   - hook写法: <https://react.i18next.com/guides/quick-start#using-the-hook>
@@ -9,3 +7,10 @@
 - [ ] material-ui
   - 中文文档: <https://material-ui.com/zh/>
 - [ ] react hook 写法
+- [ ] wechaty
+- [ ] wechaty-puppet-puppeteer
+  - 安装方式:
+
+    ``` bash
+    PUPPETEER_DOWNLOAD_HOST=https://npm.taobao.org/mirrors yarn add wechaty-puppet-puppeteer
+    ```

@@ -1,4 +1,4 @@
-import { parseImageString } from '../src/du/utils/dataParse'
+import { parseImageString } from '../src/apps/du/utils/dataParse'
 
 test('parseImageString:null', () => {
   expect(parseImageString(``)).toStrictEqual([])

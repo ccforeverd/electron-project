@@ -6,6 +6,8 @@ import * as path from 'path'
 import { format as formatUrl } from 'url'
 import childProcess from 'child_process'
 
+import '../server'
+
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // global reference to mainWindow (necessary to prevent window from being garbage collected)
@@ -63,7 +65,12 @@ function createMainWindow () {
   //   `)
   // })
 
-  serverExec = childProcess.exec('node ./server.js')
+  if (process.platform === 'darwin') {
+    serverExec = childProcess.exec('CCFOREVERD_SERVER=1 node ./server.js')
+  } else {
+    serverExec = childProcess.exec('set CCFOREVERD_SERVER=1 node .\\server.js')
+  }
+
   if (!serverExec._hasAddedListeners) {
     serverExec._hasAddedListeners = true
     serverExec.stdout.on('data', data => {

@@ -47,21 +47,31 @@ function createMainWindow () {
     })
   })
 
-  serverExec = childProcess.exec('node ./server.js', function (error, stdout, stderr) {
-    if (error) {
-      console.log(error.stack)
-      console.log('Error code: ' + error.code)
-      return
-    }
-    console.log(`
-pid: ${process.pid}
-stderr: ${stderr}
-server-exec output:
+  // const onExecStart = (error, stdout, stderr) => {
+  //   if (error) {
+  //     console.log(error.stack)
+  //     console.log('Error code: ' + error.code)
+  //     return
+  //   }
+  //   console.log(`
+  // pid: ${process.pid}
+  // stderr: ${stderr}
+  // server-exec output:
 
-${stdout}
+  // ${stdout}
 
-    `)
-  })
+  //   `)
+  // }
+  serverExec = childProcess.exec('node ./server.js')
+  if (!serverExec._hasAddListeners) {
+    serverExec._hasAddListeners = true
+    serverExec.stdout.on('data', data => {
+      console.log(data)
+    })
+    serverExec.stderr.on('data', data => {
+      console.log(data)
+    })
+  }
 
   return window
 }

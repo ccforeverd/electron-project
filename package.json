@@ -4,7 +4,6 @@
   "license": "UNLICENSED",
   "scripts": {
     "i": "PUPPETEER_DOWNLOAD_HOST=https://npm.taobao.org/mirrors ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ yarn",
-    "install": "yarn i",
     "dev": "electron-webpack dev",
     "compile": "electron-webpack",
     "dist": "yarn compile && electron-builder --win portable",

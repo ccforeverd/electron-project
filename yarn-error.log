@@ -1,0 +1,118 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.19.1/libexec/bin/yarn.js
+
+PATH: 
+  /var/folders/4d/p47z6r516sb95rgffsjfdn4r0000gn/T/yarn--1571758007077-0.9545801597930834:/Users/zhangshuyao/Sites/git/electron-project/node_modules/.bin:/Users/zhangshuyao/.config/yarn/link/node_modules/.bin:/usr/local/libexec/lib/node_modules/npm/bin/node-gyp-bin:/usr/local/lib/node_modules/npm/bin/node-gyp-bin:/usr/local/bin/node_modules/npm/bin/node-gyp-bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Apple/bin
+
+Yarn version: 
+  1.19.1
+
+Node version: 
+  10.16.1
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@material%2fcore: Not found
+      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.19.1/libexec/lib/cli.js:66926:18)
+      at Request.self.callback (/usr/local/Cellar/yarn/1.19.1/libexec/lib/cli.js:140564:22)
+      at Request.emit (events.js:198:13)
+      at Request.<anonymous> (/usr/local/Cellar/yarn/1.19.1/libexec/lib/cli.js:141536:10)
+      at Request.emit (events.js:198:13)
+      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.19.1/libexec/lib/cli.js:141458:12)
+      at Object.onceWrapper (events.js:286:20)
+      at IncomingMessage.emit (events.js:203:15)
+      at endReadableNT (_stream_readable.js:1145:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
+
+npm manifest: 
+  {
+    "name": "electron-webpack-quick-start",
+    "version": "1.0.0",
+    "license": "UNLICENSED",
+    "scripts": {
+      "i": "PUPPETEER_DOWNLOAD_HOST=https://npm.taobao.org/mirrors ELECTRON_MIRROR=https://npm.taobao.org/mirrors/electron/ yarn",
+      "dev": "electron-webpack dev",
+      "compile": "electron-webpack",
+      "dist": "yarn compile && electron-builder --win portable",
+      "dist:mac": "yarn compile && electron-builder --mac",
+      "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
+      "fix": "standard --fix",
+      "test": "jest",
+      "start": "node ./start.js"
+    },
+    "pre-commit": "fix",
+    "standard": {
+      "parser": "babel-eslint",
+      "ignore": [
+        "*.test.js"
+      ],
+      "globals": [
+        "Blob",
+        "File",
+        "FileReader",
+        "Uint16Array",
+        "__static"
+      ]
+    },
+    "dependencies": {
+      "@antv/g6": "^3.1.3",
+      "@babel/plugin-proposal-class-properties": "^7.5.5",
+      "@babel/plugin-proposal-decorators": "^7.6.0",
+      "@date-io/date-fns": "^1.3.11",
+      "@material-ui/core": "4.5.1",
+      "@material-ui/icons": "^4.5.1",
+      "@material-ui/pickers": "^3.2.7",
+      "@material-ui/styles": "^4.5.0",
+      "@material/core": "^2.0.0-dev.20160903",
+      "antd": "^3.24.2",
+      "babel-plugin-import": "^1.12.2",
+      "date-fns": "^2.5.1",
+      "eslint-loader": "^3.0.2",
+      "eslint-plugin-react-hooks": "^2.1.2",
+      "file-saver": "^2.0.2",
+      "i18next": "^17.2.0",
+      "id-validator": "^1.3.0",
+      "mobx": "^5.14.2",
+      "mobx-react": "6.1.4",
+      "node-xlsx": "^0.15.0",
+      "react": "16.10.2",
+      "react-dom": "16.10.2",
+      "react-i18next": "^10.13.1",
+      "source-map-support": "^0.5.13",
+      "tesseract.js": "^2.0.0-alpha.15",
+      "typeface-roboto": "^0.0.75",
+      "validator": "^11.1.0",
+      "webpack-merge": "^4.2.2",
+      "wechat4u": "^0.7.7",
+      "wechaty": "^0.28.3",
+      "wechaty-puppet-puppeteer": "^0.18.3",
+      "wechaty-puppet-wechat4u": "^0.16.3"
+    },
+    "devDependencies": {
+      "@babel/preset-react": "^7.6.3",
+      "babel-eslint": "^10.0.3",
+      "electron": "6.0.12",
+      "electron-builder": "^21.2.0",
+      "electron-webpack": "^2.7.4",
+      "electron-webpack-eslint": "^5.0.1",
+      "eslint-plugin-import": "^2.18.2",
+      "eslint-plugin-react": "^7.16.0",
+      "jest": "^24.9.0",
+      "node-sass": "^4.12.0",
+      "pre-commit": "^1.2.2",
+      "react-hot-loader": "^4.12.15",
+      "sass-loader": "^8.0.0",
+      "source-map": "^0.7.3",
+      "standard": "^14.3.1",
+      "webpack": "~4.41.2",
+      "webpack-build-notifier": "^2.0.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

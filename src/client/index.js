@@ -47,7 +47,7 @@ function createMainWindow () {
     })
   })
 
-  // const onExecStart = (error, stdout, stderr) => {
+  // serverExec = childProcess.exec('node ./server.js', function (error, stdout, stderr) {
   //   if (error) {
   //     console.log(error.stack)
   //     console.log('Error code: ' + error.code)
@@ -61,10 +61,11 @@ function createMainWindow () {
   // ${stdout}
 
   //   `)
-  // }
+  // })
+
   serverExec = childProcess.exec('node ./server.js')
-  if (!serverExec._hasAddListeners) {
-    serverExec._hasAddListeners = true
+  if (!serverExec._hasAddedListeners) {
+    serverExec._hasAddedListeners = true
     serverExec.stdout.on('data', data => {
       console.log(data)
     })

@@ -47,8 +47,10 @@
 
 ## 说明
 
+readmes 传送门:
+
 - 服务端 [`./src/server/readme.md`](./src/server/readme.md)
-- 工具文件 [`开发中`](./src/utils/readme.md)
+- 工具文件 [`./src/utils/readme.md`](./src/utils/readme.md)
 - 应用: [阿迪达斯微信公众号抽签客户端](./src/apps/adidas-wechat/readme.md)
 - 应用: [毒app读取截图识别和计算价格](./src/apps/du/readme.md)
 - 应用: [政府外包项目框架](./src/apps/goverment/readme.md)

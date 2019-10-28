@@ -1,48 +1,60 @@
-# electron-webpack-quick-start
+# Electron Apps by Ccforeverd
 
-> A bare minimum project structure to get started developing with [`electron-webpack`](https://github.com/electron-userland/electron-webpack).
+使用 [`electron-webpack`](https://github.com/electron-userland/electron-webpack) 快速搭建
 
-Thanks to the power of `electron-webpack` this template comes packed with...
+## 安装
 
-* Use of [`webpack-dev-server`](https://github.com/webpack/webpack-dev-server) for development
-* HMR for both `renderer` and `main` processes
-* Use of [`babel-preset-env`](https://github.com/babel/babel-preset-env) that is automatically configured based on your `electron` version
-* Use of [`electron-builder`](https://github.com/electron-userland/electron-builder) to package and build a distributable electron application
+正常通过 `yarn` 或 `npm i` 命令来安装
 
-Make sure to check out [`electron-webpack`'s documentation](https://webpack.electron.build/) for more details.
+如果因为安装源问题安装失败
 
-## Getting Started
+可以配置淘宝安装镜像, 具体请百度
 
-Simply clone down this repository, install dependencies, and get started on your application.
+并且在 `package.json` 的 `scripts` 中有一个 `i` 命令
 
-The use of the [yarn](https://yarnpkg.com/) package manager is **strongly** recommended, as opposed to using `npm`.
+执行 `yarn i` 或者 `npm run i` 可以通过镜像安装所有依赖
 
-```bash
-# create a directory of your choice, and copy template using curl
-mkdir new-electron-webpack-project && cd new-electron-webpack-project
-curl -fsSL https://github.com/electron-userland/electron-webpack-quick-start/archive/master.tar.gz | tar -xz --strip-components 1
+## 结构
 
-# or copy template using git clone
-git clone https://github.com/electron-userland/electron-webpack-quick-start.git
-cd electron-webpack-quick-start
-rm -rf .git
+根目录大部分是配置文件
 
-# install dependencies
-yarn
-```
+文件夹 src 里是主要开发文件
 
-### Development Scripts
+其中:
 
-```bash
-# run application in development mode
-yarn dev
+- `apps` 文件夹存放各种应用开发文件
+- `client` 文件夹存放客户端开发文件
+- `server` 文件夹存放服务端开发文件
+- `utils` 文件夹存放通用工具文件
 
-# compile source code and create webpack output
-yarn compile
+## 配置
 
-# `yarn compile` & create build with electron-builder
-yarn dist
+在 `electron-webpacl.json` 的 `renderer` 项
 
-# `yarn compile` & create unpacked build with electron-builder
-yarn dist:dir
-```
+其中 `sourceDirectory` 指向当前开发和打包的应用
+
+如果要更换应用, 修改该项即可
+
+未来如果频繁更换项目开发和打包, 我会写个脚本来简化操作
+
+## 打包
+
+使用 [`electron-builder`](https://www.electron.build/) 进行打包
+
+通过 `yarn dist:win` 或 `npm run dist:win` 命令来打包Windows应用
+
+通过 `yarn dist:mac` 或 `npm run dist:mac` 命令来打包MacOS应用
+
+## 说明
+
+- 服务端 [`./src/server/readme.md`](./src/server/readme.md)
+- 工具文件 [`开发中`](./src/utils/readme.md)
+- 应用: [阿迪达斯微信公众号抽签客户端](./src/apps/adidas-wechat/readme.md)
+- 应用: [毒app读取截图识别和计算价格](./src/apps/du/readme.md)
+- 应用: [政府外包项目框架](./src/apps/goverment/readme.md)
+
+----
+
+Write by ccforeverd <zh1045456074@163.com>
+
+2019.10.27

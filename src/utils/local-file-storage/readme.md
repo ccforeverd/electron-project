@@ -1,4 +1,4 @@
-# Local File Storage
+# LOCAL-FILE-STORAGE
 
 存储/读取数据到本地文件中
 
@@ -8,7 +8,7 @@
 
 import * as LocalFileStorage from '@common/utils/local-file-storage'
 // or
-import { save, load, del } from '@common/utils/local-file-storage'
+import { save, load, del, delAll } from '@common/utils/local-file-storage'
 
 ```
 

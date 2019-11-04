@@ -77,6 +77,6 @@
 //   console.log(`Server running at http://${hostname}:${port}/`)
 // })
 
-require('./src/common/server')
+require('./src/server')
 
 // console.log('server start')

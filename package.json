@@ -39,6 +39,7 @@
     "@material/core": "^2.0.0-dev.20160903",
     "antd": "^3.24.2",
     "babel-plugin-import": "^1.12.2",
+    "bufferutil": "^4.0.1",
     "date-fns": "^2.5.1",
     "eslint-loader": "^3.0.2",
     "eslint-plugin-react-hooks": "^2.1.2",
@@ -54,12 +55,14 @@
     "source-map-support": "^0.5.13",
     "tesseract.js": "^2.0.0-alpha.15",
     "typeface-roboto": "^0.0.75",
+    "utf-8-validate": "^5.0.2",
     "validator": "^11.1.0",
     "webpack-merge": "^4.2.2",
     "wechat4u": "^0.7.7",
     "wechaty": "^0.28.3",
     "wechaty-puppet-puppeteer": "^0.18.3",
-    "wechaty-puppet-wechat4u": "^0.16.3"
+    "wechaty-puppet-wechat4u": "^0.16.3",
+    "ws": "^7.2.0"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.6.3",

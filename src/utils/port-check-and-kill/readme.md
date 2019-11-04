@@ -20,3 +20,9 @@ import { checkPort, killPid, killPort } from '@common/utils/port-check-and-kill'
   - pid: number|string 进程号
 - PortCheckAndKill.killPort(port)
   - port: number|string 端口号
+
+返回 json:
+
+- result: true|false 是否成功
+- pid: 程序id
+- error: 报错
